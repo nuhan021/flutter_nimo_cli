@@ -1,18 +1,52 @@
-Project Automation ToolA Python script to streamline the creation of Flutter projects with predefined architectural templates.🚀 Project OverviewThis is a command-line interface (CLI) tool designed to automate the initial setup of Flutter projects. It allows developers to quickly bootstrap a new project with a chosen architectural pattern (currently TDD or MVC) and automatically adds a set of common, required dependencies. The goal is to save time and ensure a consistent, professional starting point for new projects, making it ideal for open-source contributions.📁 Folder StructureThe project is organized into a main script and a modules directory containing all the helper functions.project-automator/
-├── main.py                     # The main executable script
-├── modules/
-│   ├── __init__.py             # Makes 'modules' a Python package
-│   ├── check_dependencies.py   # Checks for system dependencies (e.g., Flutter, Python)
-│   ├── flutter_project.py      # Functions for creating Flutter projects and adding dependencies
-│   ├── git_operations.py       # Handles cloning git repositories and copying files
-│   └── utils.py                # General utility functions for file handling
-└── requirements.txt            # Lists all Python dependencies
-└── README.md                   # This documentation file
+# Flutter NIMO CLI 🚀
 
-🛠️ Setup and InstallationPrerequisitesYou need the following installed on your system:Python 3.x: This script is written in Python. Ensure it's in your system's PATH.Flutter SDK: The core functionality relies on Flutter being installed and configured.Git: The script uses Git to clone the architectural templates from GitHub.DependenciesThis project uses the termcolor and inquirer Python libraries. The required packages are listed in the requirements.txt file, which is the standard way to manage dependencies in Python.To install them, navigate to the project's root directory and run:pip install -r requirements.txt
-🎮 How to UseClone the Repository:git clone https://github.com/your-username/project-automator.git
-cd project-automator
+A command-line tool to quickly bootstrap new Flutter projects with predefined architectural templates (TDD & MVC) and essential dependencies.
 
-Run the Script:python main.py
+---
 
-The script will guide you through a series of interactive prompts to:Check for required dependencies.Enter a name for your new Flutter project.Select the desired architecture (TDD or MVC).Choose the target platforms (Android, iOS, Web, etc.).After you make your selections, the script will:Create a new Flutter project in your Desktop directory.Clone the selected architectural template repository from GitHub.Replace the default lib folder of the new project with the template's lib folder.Update the Dart package: import statements to match your new project's name.Add all necessary dependencies defined for the chosen architecture.Clean up all temporary files.📄 Code Documentationmain.pyThis is the heart of the tool. It imports functions from the modules directory to perform the following steps:check_dependencies(): Verifies that Flutter and Python are installed.get_user_input(): Prompts the user for the project name, architecture, and devices.create_flutter_project(): Creates the base Flutter project with the selected platforms.clone_template_and_copy_lib(): Fetches the architectural template from GitHub.replace_package_name_in_lib(): Ensures all import statements in the copied files are correct for the new project name.add_dependencies(): Adds the pubspec.yaml dependencies.modules/check_dependencies.pyis_command_installed(command): A utility function that checks for the existence of a command in the system's PATH. It includes a user-friendly spinning animation during the check.check_dependencies(): The main function that uses is_command_installed() to verify the presence of Python and Flutter, with specific checks for different operating systems.modules/flutter_project.pycreate_flutter_project(project_name, selected_devices, target_dir): Executes the flutter create command with the provided project name and platforms.add_dependencies(flutter_project_path, dependencies): Executes the flutter pub add command for each dependency in the list.modules/git_operations.pyclone_template_and_copy_lib(repo_url, flutter_project_path, template_name): This function is responsible for the git-related actions. It clones the specified repo_url into a temporary directory, deletes the existing lib folder of the new project, copies the template's lib folder over, and then removes the temporary clone.modules/utils.pysafe_rmtree(path): A wrapper for shutil.rmtree that includes an error handler (handle_remove_readonly) to successfully delete directories even if they contain read-only files, a common issue on Windows.replace_package_name_in_lib(lib_path, old_pkg_name, new_pkg_name): This function is crucial for making the template code work. It iterates through all .dart files in the lib directory and replaces the old package name with the new one.🤝 ContributionThis project is open source, and contributions are welcome! If you have suggestions for new features, bug fixes, or new architectural templates, please feel free to:Fork the repository.Create a new branch for your feature or fix.Submit a Pull Request with a clear description of your changes.
+## 🌟 Features
+
+- **Automated Project Setup**  
+  Create a new Flutter project with a single command.
+
+- **Architectural Templates**  
+  Choose between a robust Test-Driven Development (TDD) and a Model-View-Controller (MVC) folder structure.
+
+- **Dependency Management**  
+  Automatically adds common packages tailored for your chosen architecture.
+
+- **Cross-Platform Compatibility**  
+  Supports project creation for all Flutter platforms (Android, iOS, Web, Windows, macOS, Linux).
+
+- **Clean and Professional Codebase**  
+  Built to provide a great starting point for any new Flutter project.
+
+---
+
+## 🛠️ Getting Started
+
+### Prerequisites
+
+Make sure you have the following installed on your system:
+
+- Python 3.8 or higher  
+- Flutter SDK  
+- Git  
+
+### Installation
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/nuhan021/flutter_nimo_cli.git
+   cd flutter_nimo_cli
+   
+2. **Install Dependencies**
+
+   ```bash
+   pip install -r requirements.txt
+   
+3. **Run the CLI**
+
+   ```bash
+   python main.py
