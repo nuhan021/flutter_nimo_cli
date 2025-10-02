@@ -68,7 +68,7 @@ def is_command_installed(command: str) -> bool:
         # The 'shell=True' is used for cross-platform compatibility
         # and to correctly find executables like 'py' on Windows.
         subprocess.run(
-            [command, "--version"],
+            f"{command} --version",
             check=True,
             capture_output=True,
             text=True,
