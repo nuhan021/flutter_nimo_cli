@@ -6,6 +6,8 @@
 # applying a selected architectural template, and adding necessary dependencies.
 # =============================================================================
 
+import utils.transport
+import utils.session
 import os
 import sys
 import inquirer
@@ -43,9 +45,17 @@ TDD_DEPENDENCIES = [
 
 # Dependencies to be added for the MVC architecture
 MVC_DEPENDENCIES = [
-    "get",
     "http",
-    "logger"
+    "intl",
+    "logger",
+    "url_launcher",
+    "flutter_screenutil",
+    "google_fonts",
+    "shared_preferences",
+    "get",
+    "web_socket_channel",
+    "persistent_bottom_nav_bar_v2",
+    "flutter_otp_text_field",
 ]
 
 
@@ -141,7 +151,7 @@ def main():
         dependencies = TDD_DEPENDENCIES
     else:  # MVC
         repo_url = MVC_GIT_REPO_URL
-        template_name = "getX_project_structure"
+        template_name = "course_online"
         dependencies = MVC_DEPENDENCIES
 
     try:
